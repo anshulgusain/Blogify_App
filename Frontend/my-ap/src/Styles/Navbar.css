@@ -1,0 +1,16 @@
+#Parent{
+display: flex;
+justify-content: space-around;
+background-color: rgb(44,142,236);
+}
+
+#Logo{
+    color: white;
+}
+
+
+#Routes{
+    display: flex;
+    gap: 20px;
+    color: white;
+}
