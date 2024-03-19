@@ -17,6 +17,7 @@ const navigate=useNavigate()
   const [image, setImage] = useState("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAMwAAADACAMAAAB/Pny7AAAAA1BMVEX///+nxBvIAAAAPUlEQVR4nO3BMQEAAADCoPVPbQ0PoAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAvgyZwAABCrx9CgAAAABJRU5ErkJggg==")
   const [author, setAuthor] = useState("")
   const [blog, setBlog] = useState("")
+  const [seePrev, setSee] = useState(false)
 
 
 
@@ -59,6 +60,7 @@ if(error) return<div><h1>Error in Creating Blog</h1></div>
         <form >
           <label>Blog Title</label>
           <input placeholder="Type Here" onChange={((e) => {
+            setSee(true)
             setTitle(e.target.value)
           })}></input>
           <label>Image URL</label>
@@ -79,7 +81,7 @@ if(error) return<div><h1>Error in Creating Blog</h1></div>
         </form>
       </div>
 
-      <div className="preview">
+      <div className={seePrev?"preview":"previewhide"}>
        
         <div className="box">
           <div className="left">

@@ -3,6 +3,7 @@ import { BrowserRouter } from 'react-router-dom';
 import './App.css';
 
 import AllRoutes from './Routes/AllRoutes';
+
 // import Header from './Components/header';
 
 
@@ -14,6 +15,7 @@ function App() {
       <BrowserRouter>
         <AllRoutes />
       </BrowserRouter>
+      {/* <Navbar_2 /> */}
     </div>
 
 

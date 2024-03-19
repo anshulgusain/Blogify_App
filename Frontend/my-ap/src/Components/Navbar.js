@@ -1,36 +1,91 @@
 
 import { Link } from 'react-router-dom';
-import '../Styles/Navbar.css';
-import { useState } from 'react';
+import "../Styles/Navbar.css"
+import React, { useState } from "react";
+
+
+import { CodeIcon, HamburgetMenuClose, HamburgetMenuOpen} from "./Icon"
+
 function Navbar() {
+  const [click, setClick] = useState(false);
 
-    const [isMenuOpen, setMenuOpen] = useState(false);
+  const handleClick = () => setClick(!click);
+  return (
+    <>
+      <nav className="navbar">
+        <div className="nav-container">
+          <Link  to="/" className="nav-logo">
+            <span>Blogify</span>
+            {/* <i className="fas fa-code"></i> */}
+            <span className="icon">
+              <CodeIcon />
+            </span>
+          </Link>
 
-    const toggleMenu = () => {
-        setMenuOpen(!isMenuOpen);
-    };
+          <ul className={click ? "nav-menu active" : "nav-menu"}>
+            <li className="nav-item">
+              <Link
+                
+                to="/"
+                activeClassName="active"
+                className="nav-links"
+                onClick={handleClick}
+              >
+                Home
+              </Link>
+            </li>
+            <li className="nav-item">
+              <Link
+                exact
+                to="/create"
+                activeClassName="active"
+                className="nav-links"
+                onClick={handleClick}
+              >
+                Create
+              </Link>
+            </li>
+            <li className="nav-item">
+              <Link
+                exact
+                to="/about"
+                activeClassName="active"
+                className="nav-links"
+                onClick={handleClick}
+              >
+                About Us
+              </Link>
+            </li>
+            <li className="nav-item">
+              <Link
+                exact
+                to="/login"
+                activeClassName="active"
+                className="nav-links"
+                onClick={handleClick}
+              >
+                Register
+              </Link>
+            </li>
+          </ul>
+          <div className="nav-icon" onClick={handleClick}>
+            {/* <i className={click ? "fas fa-times" : "fas fa-bars"}></i> */}
 
-    return (
-        <div id="Parent">
+            {click ? (
+              <span className="icon">
+                <HamburgetMenuClose />{" "}
+              </span>
 
-            <div id="Logo"><h1>Blogify</h1></div>
-            
-            <div id="Hamburger" onClick={toggleMenu}>
-                <div className={`bar ${isMenuOpen ? 'open' : ''}`}></div>
-                <div className={`bar ${isMenuOpen ? 'open' : ''}`}></div>
-                <div className={`bar ${isMenuOpen ? 'open' : ''}`}></div>
-            </div>
-
-            <div id="Routes" className={isMenuOpen ? 'open' : ''}>
-            <Link to="/" onClick={toggleMenu}><h2>Home</h2></Link>
-                <Link to="/edit" onClick={toggleMenu}><h2>Edit</h2></Link>
-                <Link to="/create" onClick={toggleMenu}><h2>Create</h2></Link>
-                <Link to="/login" onClick={toggleMenu}><h2>Login</h2></Link>
-            </div>
-
-
+            ) : (
+              <span className="icon">
+                <HamburgetMenuOpen />
+              </span>
+            )}
+          </div>
         </div>
-    )
+      </nav>
+    </>
+  );
 }
 
-export default Navbar
+export default Navbar;
