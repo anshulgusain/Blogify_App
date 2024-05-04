@@ -80,7 +80,7 @@ app.put("/blog/edit/:id",async (req,res)=>{
  const {title,image,author,blog}=req.body
 //  console.log(status)
  try{
-    if(id===id){
+    if(id===userid){
 await BlogModel.findByIdAndUpdate(id,{title,image,author,blog})
 res.send("Edited Succesfully")
 
@@ -102,7 +102,7 @@ app.delete("/blog/:id",async (req,res)=>{
     console.log(userid)
     console.log(id)
    try{
-      if(id===id){
+      if(id===userid){
   await BlogModel.findByIdAndDelete(id)
   res.send("Deleted Succesfully")
   
