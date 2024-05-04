@@ -74,46 +74,47 @@ res.send("Blog Created Sucessfully")
 
 })
 
-// app.put("/todos/:id",async (req,res)=>{
-//   const {id}=req.params
-//   const userid=req.userid
-//  const {taskname,status,tag}=req.body
-// //  console.log(status)
-//  try{
-//     if(id===userid){
-// await TodoModel.findByIdAndUpdate(id,{taskname,status,tag})
-// res.send("Edited Succesfully")
+app.put("/blog/edit/:id",async (req,res)=>{
+  const {id}=req.params
+  const userid=req.userid
+ const {title,image,author,blog}=req.body
+//  console.log(status)
+ try{
+    if(id===id){
+await BlogModel.findByIdAndUpdate(id,{title,image,author,blog})
+res.send("Edited Succesfully")
 
-//     }else{
-//         res.send("Not Authorised")
-//     }
-//  }catch(err){
-//     console.log(err)
-//     res.send("Not edited")
-//  }
+    }else{
+        res.send("Not Authorised")
+    }
+ }catch(err){
+    console.log(err)
+    res.send("Not edited")
+ }
 
-// })
+})
 
 
-// app.delete("/todos/:id",async (req,res)=>{
-//     const {id}=req.params
+app.delete("/blog/:id",async (req,res)=>{
+    const {id}=req.params
     
-//     const userid=req.userid
-//     console.log(userid)
-//    try{
-//       if(id===userid){
-//   await TodoModel.findByIdAndDelete(id)
-//   res.send("Deleted Succesfully")
+    const userid=req.userid
+    console.log(userid)
+    console.log(id)
+   try{
+      if(id===id){
+  await BlogModel.findByIdAndDelete(id)
+  res.send("Deleted Succesfully")
   
-//       }else{
-//           res.send("Not Authorised")
-//       }
-//    }catch(err){
-//       console.log(err)
-//       res.send("Not Deleted")
-//    }
+      }else{
+          res.send("Not Authorised")
+      }
+   }catch(err){
+      console.log(err)
+      res.send("Not Deleted")
+   }
   
-//   })
+  })
 
 app.listen(8080,async()=>{
 try{

@@ -1,14 +1,22 @@
-
-
 import {  useState } from "react"
 import "../Styles/Create.css"
 import axios from "axios"
-import {useNavigate} from "react-router-dom"
+import {useLocation, useNavigate} from "react-router-dom"
 
+const Edit=()=> {
+  const location = useLocation();
 
+  
+  if(location.state){
+  var auth=location.state.author
+  var img=location.state.image
+  var blg=location.state.blog
+  var titl=location.state.title
+  var id=location.state._id
+ 
+  }
 
-
-function Create() {
+    
 
 const navigate=useNavigate()
 
@@ -39,10 +47,16 @@ const navigate=useNavigate()
     const dat=JSON.stringify(obj)
 
     try{
-      const response=await axios.post("http://localhost:8080/blog/add",dat,config)
+      const response=await axios.put(`http://localhost:8080/blog/edit/${id}`,dat,config)
       // console.log(response)
-      alert("Blog created Succesfully")
-      navigate("/")
+      await navigate("/")
+      console.log(response)
+      alert("Blog edited Succesfully")
+      // navigate("/", { state: { _id: id,
+      //   author:auth,title:titl,image:image,blog:blog
+       
+      //   } });
+      
     }catch(err){
       console.log(err)
       alert(err)
@@ -52,31 +66,31 @@ const navigate=useNavigate()
   }
 
 
-if(error) return<div><h1>Error in Creating Blog</h1></div>
+if(error) return<div><h1>Error in Editing Blog</h1></div>
 
   return (
     <div className="Parent">
       <div id="typepad">
         <form >
           <label>Blog Title</label>
-          <input placeholder="Type Here" onChange={((e) => {
+          <input placeholder={titl}  onChange={((e) => {
             setSee(true)
             setTitle(e.target.value)
           })}></input>
           <label>Image URL</label>
-          <input placeholder="Type Here" onChange={((e) => {
+          <input placeholder={img} onChange={((e) => {
             setImage(e.target.value)
           })}
           ></input>
           <label>Author</label>
-          <input placeholder="Type Here" onChange={((e) => {
+          <input placeholder={auth} onChange={((e) => {
             setAuthor(e.target.value)
           })}></input>
           <label>Blog Content</label>
-          <textarea placeholder="Type Your Content here" className="typearea" rows={"7"} cols={"9"} onChange={((e) => {
+          <textarea placeholder={blg} className="typearea" rows={"7"} cols={"9"} onChange={((e) => {
             setBlog(e.target.value)
           })}></textarea>
-          <button type="submit" className="submit" onClick={handleSubmit}>Create</button>
+          <button type="submit" className="submit" onClick={handleSubmit}>Edit</button>
 
         </form>
       </div>
@@ -84,18 +98,18 @@ if(error) return<div><h1>Error in Creating Blog</h1></div>
       <div className={seePrev?"preview":"previewhide"}>
        
         <div className="box">
-          <div className={seePrev?"left":"previewhide"}>
-          <h1>{title}</h1>
-          <h4 className={seePrev?"left":"previewhide"}>By-{author}</h4>
+          <div className="left">
+          <h1>{titl}</h1>
+          <h4>By-{auth}</h4>
           </div>
           <div className="right">
-            <img src={image} alt="Blog"  />
+            <img src={img} alt="Blog"  />
           </div>
           
          
         </div>
         <div className="blogarea">
-            <p>{blog}</p>
+            <p>{blg}</p>
           </div>
       </div>
 
@@ -105,4 +119,4 @@ if(error) return<div><h1>Error in Creating Blog</h1></div>
   )
 }
 
-export default Create
+export default Edit

@@ -1,12 +1,9 @@
-
-import { Link } from 'react-router-dom';
-import "../Styles/Navbar.css"
 import React, { useState } from "react";
-
-
+import { Link } from "react-router-dom";
+import "../Styles/Navbar_2.css";
 import { CodeIcon, HamburgetMenuClose, HamburgetMenuOpen} from "./Icon"
 
-function Navbar() {
+function NavBar() {
   const [click, setClick] = useState(false);
 
   const handleClick = () => setClick(!click);
@@ -14,58 +11,58 @@ function Navbar() {
     <>
       <nav className="navbar">
         <div className="nav-container">
-          <Link  to="/" className="nav-logo">
-            <span>Blogify</span>
+          <div exact to="/" className="nav-logo">
+            <span>CodeBucks</span>
             {/* <i className="fas fa-code"></i> */}
             <span className="icon">
               <CodeIcon />
             </span>
-          </Link>
+          </div>
 
           <ul className={click ? "nav-menu active" : "nav-menu"}>
             <li className="nav-item">
-              <Link
-                
+              <div
+                exact
                 to="/"
-                // activeClassName="active"
-                className="nav-links"
-                onClick={handleClick}
-              >
-                Home
-              </Link>
-            </li>
-            <li className="nav-item">
-              <Link
-              exact="true"
-                to="/create"
                 activeClassName="active"
                 className="nav-links"
                 onClick={handleClick}
               >
-                Create
-              </Link>
+                Home
+              </div>
             </li>
             <li className="nav-item">
-              <Link
-              exact="true"  
+              <div
+                exact
                 to="/about"
                 activeClassName="active"
                 className="nav-links"
                 onClick={handleClick}
               >
-                About Us
-              </Link>
+                About
+              </div>
             </li>
             <li className="nav-item">
-              <Link
-                exact="true"
-                to="/login"
+              <div
+                exact
+                to="/blog"
                 activeClassName="active"
                 className="nav-links"
                 onClick={handleClick}
               >
-                Register
-              </Link>
+                Blog
+              </div>
+            </li>
+            <li className="nav-item">
+              <div
+                exact
+                to="/contact"
+                activeClassName="active"
+                className="nav-links"
+                onClick={handleClick}
+              >
+                Contact Us
+              </div>
             </li>
           </ul>
           <div className="nav-icon" onClick={handleClick}>
@@ -88,4 +85,4 @@ function Navbar() {
   );
 }
 
-export default Navbar;
+export default NavBar;

@@ -1,6 +1,6 @@
 const mongoose=require("mongoose")
 
-const connection=mongoose.connect("mongodb+srv://anshulgusain99:AQr5L1nlNZeN05WW@cluster0.vwiwavz.mongodb.net/dashify")
+const connection=mongoose.connect("mongodb+srv://anshulgusain99:tchLqjY7Dinyb9tX@cluster0.vwiwavz.mongodb.net/dashify")
 
 module.exports={
     connection
