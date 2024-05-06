@@ -19,9 +19,12 @@ function Login() {
   };
 
   try{
- const response= await axios.post("http://localhost:8080/login",userData)
+ const response= await axios.post("https://long-tan-cygnet-tie.cyclic.app/login",userData)
  
  console.log("Login Successful:",response.data)
+ console.log(response.data.token)
+ const abc=""
+ localStorage.setItem("token", abc)
  localStorage.setItem("token", response.data.token)
 
  alert(response.data.msg)

@@ -3,7 +3,7 @@ import axios from "axios"
 import { useEffect, useState } from "react"
 import "../Styles/Home.css"
 import {useNavigate} from "react-router-dom"
-import Edit from "./Edit"
+
 
 
 
@@ -28,7 +28,7 @@ function Home() {
   useEffect(() => {
     const search = async () => {
       try {
-        const response = await axios.get("http://localhost:8080/blog",config)
+        const response = await axios.get("https://long-tan-cygnet-tie.cyclic.app/blog",config)
         // console.log(response)
         setData(response.data.data)
         setLoading(false)
@@ -39,11 +39,11 @@ function Home() {
 
     }
     search()
-  },)
+  },[])
 
   const deleteBlog=(async(id)=>{
     console.log(id)
-    const response=await  axios.delete(`http://localhost:8080/blog/${id}`,config)
+    const response=await  axios.delete(`https://long-tan-cygnet-tie.cyclic.app/blog/${id}`,config)
     console.log(response)
    })
    

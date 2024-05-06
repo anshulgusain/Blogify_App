@@ -47,7 +47,7 @@ const navigate=useNavigate()
     const dat=JSON.stringify(obj)
 
     try{
-      const response=await axios.put(`http://localhost:8080/blog/edit/${id}`,dat,config)
+      const response=await axios.put(`https://long-tan-cygnet-tie.cyclic.app/blog/edit/${id}`,dat,config)
       // console.log(response)
       await navigate("/")
       console.log(response)

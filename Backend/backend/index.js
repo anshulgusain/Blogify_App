@@ -7,6 +7,7 @@ const { authenticate } = require("./middlewares/authenticate");
 
 const cors = require('cors');
 const { BlogModel } = require("./models/BlogModel");
+require('dotenv').config()
 
 
 const app=express()

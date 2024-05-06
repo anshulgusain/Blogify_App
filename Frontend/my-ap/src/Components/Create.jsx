@@ -39,8 +39,8 @@ const navigate=useNavigate()
     const dat=JSON.stringify(obj)
 
     try{
-      const response=await axios.post("http://localhost:8080/blog/add",dat,config)
-      // console.log(response)
+      const response=await axios.post(`https://long-tan-cygnet-tie.cyclic.app/blog/add`,dat,config)
+      console.log(response)
       alert("Blog created Succesfully")
       navigate("/")
     }catch(err){
