@@ -49,9 +49,12 @@ const navigate=useNavigate()
     try{
       const response=await axios.put(`https://long-tan-cygnet-tie.cyclic.app/blog/edit/${id}`,dat,config)
       // console.log(response)
-      await navigate("/")
+   
       console.log(response)
-      alert("Blog edited Succesfully")
+      
+      if(response.data==="Edited Succesfully"){
+        navigate("/home")
+       }
       // navigate("/", { state: { _id: id,
       //   author:auth,title:titl,image:image,blog:blog
        

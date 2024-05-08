@@ -29,7 +29,7 @@ function Login() {
 
  alert(response.data.msg)
  if(response.data.msg==="Logged in Succesfully"){
-  navigate("/")
+  navigate("/home")
  }
 
   }catch(err){

@@ -44,7 +44,8 @@ function Home() {
   const deleteBlog=(async(id)=>{
     console.log(id)
     const response=await  axios.delete(`https://long-tan-cygnet-tie.cyclic.app/blog/${id}`,config)
-    console.log(response)
+    alert("Blog Deleted Successfully")
+    window.location.reload()
    })
    
 

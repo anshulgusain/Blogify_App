@@ -29,7 +29,9 @@ const navigate=useNavigate()
     }
   }
 
-  const handleSubmit = async() => {
+  const handleSubmit = async(e) => {
+e.preventDefault()
+
     const obj = {
       title,
       image,
@@ -40,9 +42,12 @@ const navigate=useNavigate()
 
     try{
       const response=await axios.post(`https://long-tan-cygnet-tie.cyclic.app/blog/add`,dat,config)
-      console.log(response)
-      alert("Blog created Succesfully")
-      navigate("/")
+      // console.log(response.data)
+      alert(response.data)
+      if(response.data==="Blog Created Sucessfully"){
+       navigate("/home")
+      }
+      
     }catch(err){
       console.log(err)
       alert(err)
