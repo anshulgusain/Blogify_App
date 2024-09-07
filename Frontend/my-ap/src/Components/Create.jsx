@@ -41,7 +41,7 @@ e.preventDefault()
     const dat=JSON.stringify(obj)
 
     try{
-      const response=await axios.post(`https://long-tan-cygnet-tie.cyclic.app/blog/add`,dat,config)
+      const response=await axios.post(`http://localhost:8080/blog/add`,dat,config)
       // console.log(response.data)
       alert(response.data)
       if(response.data==="Blog Created Sucessfully"){

@@ -21,6 +21,7 @@ app.get("/",(req,res)=>{
 
 app.post("/signup",async(req,res)=>{
     const {name,email,mobile,password}=req.body
+    // console.log(password)
      bcrypt.hash(password, 5, async function(err, hash) {
        await  UserModel.create({name,email,mobile,password:hash,})
        res.send("Signed up Succesfully")
@@ -33,32 +34,38 @@ app.post("/signup",async(req,res)=>{
 app.post("/login",async(req,res)=>{
     const {email,password}=req.body
     const user=await UserModel.findOne({email})
-    const hash=user.password
+  
+    
     if(user){
+        const hash=user.password
+        // console.log(password)
         bcrypt.compare(password, hash, async function(err, result) {
             // result == true
+            
             if(result){
                 var token = jwt.sign({ userid:user._id }, 'shhhhh');
+               
                 res.send({msg:"Logged in Succesfully",token:token})
             }
             else{
-                res.send("Wrong password")
+                res.send({msg:"Wrong password"})
             }
         });
     }else{
-        res.send("Sign up first")
+        res.send({msg:"Sign up first"})
     }
   
 })
 
 // Crud api part
+app.get("/blog",async (req,res)=>{
+    const data=await BlogModel.find(req.query)
+        res.send({data})
+    })
 
 app.use(authenticate)
 
-app.get("/blog",async (req,res)=>{
-const data=await BlogModel.find(req.query)
-    res.send({data})
-})
+
 
 
 app.post("/blog/add",async (req,res)=>{
@@ -77,16 +84,23 @@ res.send("Blog Created Sucessfully")
 
 app.put("/blog/edit/:id",async (req,res)=>{
   const {id}=req.params
-  const userid=req.userid
+  userid=req.userid
+ const user= await BlogModel.find({userid:id})
+const checkid=user[0].userid
+  const newid=user[0]._id.toString()
+  console.log(userid)
+  console.log(checkid)
  const {title,image,author,blog}=req.body
 //  console.log(status)
  try{
-    if(id===userid){
-await BlogModel.findByIdAndUpdate(id,{title,image,author,blog})
+    if(userid===checkid){
+       
+await BlogModel.findByIdAndUpdate(newid,{title,image,author,blog})
 res.send("Edited Succesfully")
 
     }else{
-        res.send("Not Authorised")
+        res.send({msg:"Not Authorised"})
+        console.log("NOt authori")
     }
  }catch(err){
     console.log(err)
@@ -98,17 +112,18 @@ res.send("Edited Succesfully")
 
 app.delete("/blog/:id",async (req,res)=>{
     const {id}=req.params
-    
+    const user= await BlogModel.find({_id:id})
     const userid=req.userid
+    const checkid=user[0].userid
     console.log(userid)
-    console.log(id)
+    console.log(checkid)
    try{
-      if(id===userid){
+      if(checkid===userid){
   await BlogModel.findByIdAndDelete(id)
   res.send("Deleted Succesfully")
   
       }else{
-          res.send("Not Authorised")
+          res.send({msg:"Not Authorised"})
       }
    }catch(err){
       console.log(err)

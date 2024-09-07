@@ -1,4 +1,4 @@
-import {  useState } from "react"
+import {  useEffect, useState } from "react"
 import "../Styles/Create.css"
 import axios from "axios"
 import {useLocation, useNavigate} from "react-router-dom"
@@ -21,10 +21,10 @@ const Edit=()=> {
 const navigate=useNavigate()
 
   const [error, setError] = useState(false)
-  const [title, setTitle] = useState("")
-  const [image, setImage] = useState("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAMwAAADACAMAAAB/Pny7AAAAA1BMVEX///+nxBvIAAAAPUlEQVR4nO3BMQEAAADCoPVPbQ0PoAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAvgyZwAABCrx9CgAAAABJRU5ErkJggg==")
-  const [author, setAuthor] = useState("")
-  const [blog, setBlog] = useState("")
+  const [title, setTitle] = useState(titl)
+  const [image, setImage] = useState(img)
+  const [author, setAuthor] = useState(auth)
+  const [blog, setBlog] = useState(blg)
   const [seePrev, setSee] = useState(false)
 
 
@@ -47,14 +47,17 @@ const navigate=useNavigate()
     const dat=JSON.stringify(obj)
 
     try{
-      const response=await axios.put(`https://long-tan-cygnet-tie.cyclic.app/blog/edit/${id}`,dat,config)
+      const response=await axios.put(`http://localhost:8080/blog/edit/${id}`,dat,config)
+      if(response.msg=="Not Authorized"){
+        setError(true)
+      }
       // console.log(response)
-   
-      console.log(response)
+      //  const res=dat
+      // localStorage.setItem("res",res)
       
-      if(response.data==="Edited Succesfully"){
-        navigate("/home")
-       }
+      // if(response.data==="Edited Succesfully"){
+      //   navigate("/home")
+      //  }
       // navigate("/", { state: { _id: id,
       //   author:auth,title:titl,image:image,blog:blog
        
@@ -67,6 +70,9 @@ const navigate=useNavigate()
     }
    
   }
+  
+
+ 
 
 
 if(error) return<div><h1>Error in Editing Blog</h1></div>

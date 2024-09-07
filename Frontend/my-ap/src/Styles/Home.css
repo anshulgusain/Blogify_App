@@ -16,6 +16,13 @@
     border-radius: 8px;
     box-shadow: 13px 18px 13px 13px rgb(194, 193, 193);
 }
+.error{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    align-content: center;
+    color: #1f5156;
+}
 .blogtitle{
     margin-bottom: 12px;
    font-size:30px;

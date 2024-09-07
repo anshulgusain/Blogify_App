@@ -26,10 +26,12 @@ function Home() {
   }
 
   useEffect(() => {
+    
     const search = async () => {
       try {
-        const response = await axios.get("https://long-tan-cygnet-tie.cyclic.app/blog",config)
-        // console.log(response)
+     
+        const response = await axios.get("http://localhost:8080/blog")
+        
         setData(response.data.data)
         setLoading(false)
       } catch (err) {
@@ -43,20 +45,28 @@ function Home() {
 
   const deleteBlog=(async(id)=>{
     console.log(id)
-    const response=await  axios.delete(`https://long-tan-cygnet-tie.cyclic.app/blog/${id}`,config)
+    const response=await  axios.delete(`http://localhost:8080/blog/${id}`,config)
+    console.log(response)
+    if(response.data.msg=="Not Authorised"){
+      alert("Not Authorized")
+    }
+    else{
     alert("Blog Deleted Successfully")
-    window.location.reload()
+    // window.location.reload()
+    }
    })
    
 
 
 
   if(loading) return <div>Loading ........</div>
-  if(error) return <div>Sorry there is an Error</div>
+  if(error) return <div className="error"><h1>Please Login First</h1></div>
 
   return (
     <div className="blogparent">
-      {data.map((ele)=>(
+    
+               {
+      data.map((ele)=>(
          <div className="blogcontainer" key={ele._id}> 
            <div className="blogimage">
            <img src={ele.image} alt="blog" />
@@ -73,7 +83,7 @@ function Home() {
 
          <div className="buttons">
         <button onClick={(()=>{
-         navigate("/edit", { state: { _id: ele._id,
+         navigate("/edit", { state: { _id: ele.userid,
          author:ele.author,title:ele.title,image:ele.image,blog:ele.blog
          } });
           
@@ -88,9 +98,11 @@ function Home() {
          
        </div>
       ))
-       
-      }
-
+    }
+    
+    
+    
+    
       
 
     </div>
