@@ -1,31 +1,16 @@
-
-{ 
-    [
-    {
-        "buildCommand": "next build"
-      }
-
+{
+    "version": 2,
+    "builds": [
       {
-        "cleanUrls": true
+        "src": "index.js",
+        "use": "@vercel/node"
       }
+    ],
+    "routes": [
       {
-        "crons": [
-          {
-            "path": "/api/every-minute",
-            "schedule": "* * * * *"
-          },
-          {
-            "path": "/api/every-hour",
-            "schedule": "0 * * * *"
-          },
-          {
-            "path": "/api/every-day",
-            "schedule": "0 0 * * *"
-          }
-          {
-            "devCommand": "next dev"
-          }
-        ]
+        "src": "/(.*)",
+        "dest": "/index.js"
       }
     ]
-}
+  }
+  
