@@ -4,7 +4,7 @@
 Blogify is a full-stack web application where users can sign up, log in, post blogs, and edit only their own blogs. The frontend is built with React, the backend uses Express.js, and MongoDB serves as the database.
 
 LIVE URL
-https://my-68grokbxx-anshuls-projects.vercel.app/home
+https://my-68grokbxx-anshuls-projects.vercel.app/
 
 🌟 Features
 🔒 User Authentication: Secure sign-up and login functionality.
