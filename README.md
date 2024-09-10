@@ -8,11 +8,21 @@ https://my-68grokbxx-anshuls-projects.vercel.app/home
 
 Features
 
-1.User Authentication: Secure sign-up and login functionality./n
+1.User Authentication: Secure sign-up and login functionality.
+
+
 2.Post Blogs: Logged-in users can post blogs.
+
+
 3.Edit Blogs: Users can edit or delete only the blogs they have posted.
+
+
 4.Responsive UI: The app is designed to be mobile-friendly.
+
+
 5.Rich Text Editor: Users can write their blogs with basic formatting options.
+
+
 
 
 Tech Stack
